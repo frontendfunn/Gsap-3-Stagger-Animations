@@ -1,0 +1,114 @@
+:root {
+  --blocks-count: 9;
+  --block-size: 20px;
+  --block-margin: 4px;
+  --size: calc(
+    var(--blocks-count) * (var(--block-size) + 2.1 * var(--block-margin))
+  );
+}
+$colorsList: (
+  red: #931621,
+  pink: #f36,
+  blue: #275dad,
+  green: #23ce6b,
+  white: #f6f7f8,
+  yellow: #f0ec57
+);
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1f33;
+}
+.wrapper {
+  height: var(--size);
+  width: var(--size);
+
+  transform-style: preserve-3d;
+  position: relative;
+  transform: rotateX(15deg) rotateY(15deg);
+
+  .side {
+    height: var(--size);
+    width: var(--size);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    transform-style: preserve-3d;
+
+    .block {
+      height: var(--block-size);
+      width: var(--block-size);
+      position: relative;
+      display: inline-flex;
+      margin: var(--block-margin);
+      border: 1px solid #ffffff;
+      border-radius: calc(0.15 * var(--block-size));
+    }
+
+    &:nth-child(1) {
+      transform: translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, red);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+    &:nth-child(2) {
+      transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, blue);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+    &:nth-child(3) {
+      transform: rotateY(-90deg) translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, pink);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+    &:nth-child(4) {
+      transform: rotateY(90deg) translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, green);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+    &:nth-child(5) {
+      transform: rotateX(90deg) translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, white);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+    &:nth-child(6) {
+      transform: rotateX(-90deg) translateZ(calc(var(--size) / 2));
+      .block {
+        $color: map-get($colorsList, yellow);
+        background-color: $color;
+        border-color: darken($color, 10%);
+      }
+    }
+  }
+}
